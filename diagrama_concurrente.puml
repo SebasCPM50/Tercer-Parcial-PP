@@ -1,0 +1,119 @@
+@startuml
+title Diagrama de Flujo Completo: Paradigma de Programación Concurrente
+
+start
+:Inicio del programa principal;
+note right
+El programa imprime: 
+"Sistema iniciado"
+end note
+
+:Crear lista de tareas;
+note right
+El programa imprime: 
+"Creando tareas..."
+end note
+
+:Inicializar contador = 0;
+:Crear Tarea 1;
+:Crear Tarea 2;
+:Crear Tarea 3;
+
+:Iniciar ejecución de las 3 tareas;
+note right
+El programa imprime:
+"Tarea 1 iniciada"
+"Tarea 2 iniciada"
+"Tarea 3 iniciada"
+end note
+
+fork
+    :Tarea 1: Inicio;
+    note right
+    Imprime:
+    "Tarea 1 ejecutando..."
+    end note
+    :Tarea 1: Procesar datos A;
+    :Tarea 1: Realizar cálculos;
+    note right
+    Imprime:
+    "Tarea 1 progreso 50%"
+    end note
+    :Tarea 1: Finalizar;
+    note right
+    Imprime:
+    "Tarea 1 completada"
+    end note
+    :Incrementar contador;
+fork again
+    :Tarea 2: Inicio;
+    note right
+    Imprime:
+    "Tarea 2 ejecutando..."
+    end note
+    :Tarea 2: Procesar datos B;
+    :Tarea 2: Realizar cálculos;
+    note right
+    Imprime:
+    "Tarea 2 progreso 50%"
+    end note
+    :Tarea 2: Finalizar;
+    note right
+    Imprime:
+    "Tarea 2 completada"
+    end note
+    :Incrementar contador;
+fork again
+    :Tarea 3: Inicio;
+    note right
+    Imprime:
+    "Tarea 3 ejecutando..."
+    end note
+    :Tarea 3: Procesar datos C;
+    :Tarea 3: Realizar cálculos;
+    note right
+    Imprime:
+    "Tarea 3 progreso 50%"
+    end note
+    :Tarea 3: Finalizar;
+    note right
+    Imprime:
+    "Tarea 3 completada"
+    end note
+    :Incrementar contador;
+end fork
+
+:Esperar a que todas finalicen;
+note right
+Sincronización: 
+Espera que contador == 3
+end note
+
+if (¿Todas completadas?) then (Sí)
+    :Recolectar resultados;
+    note right
+    Imprime:
+    "Recolectando resultados..."
+    end note
+    :Combinar datos;
+    :Mostrar resultado final;
+    note right
+    Imprime:
+    "Resultado Final: [combinado]"
+    "Tiempo total: X segundos"
+    end note
+    :Liberar recursos;
+    note right
+    Imprime:
+    "Sistema finalizado"
+    end note
+else (No)
+    :Manejar error;
+    note right
+    Imprime:
+    "ERROR: Tareas incompletas"
+    end note
+endif
+
+stop
+@enduml
