@@ -79,29 +79,10 @@ La **programación concurrente** es un estilo donde el programa principal crea v
  **Problemas de sincronización**: Riesgo de que dos tareas modifiquen los mismos datos  
  **Difícil de predecir**: El orden de ejecución puede variar  
 
-#### Ejemplo de Salida en Consola
+#### Diagrama
 
-```
-Sistema iniciado
-Creando tareas...
-Tarea 1 iniciada
-Tarea 2 iniciada
-Tarea 3 iniciada
-Tarea 1 ejecutando...
-Tarea 2 ejecutando...
-Tarea 3 ejecutando...
-Tarea 1 en progreso 50%
-Tarea 3 en progreso 50%
-Tarea 2 en progreso 50%
-Tarea 1 completada
-Tarea 2 completada
-Tarea 3 completada
-Recolectando resultados...
-Combinando datos...
-Resultado Final: [dato1 + dato2 + dato3]
-Tiempo total: 2.5 segundos
-Sistema finalizado exitosamente
-```
+<img width="1217" height="1219" alt="hPR1ZjCm48RlVefH9QJkfLeISKcqOg5qfKeihDez824ENcVQTN7iOZiNteO7uCG38D4NO-maRTe2IhlqL7iyCx-_iMPoxJotlYeLyz8hX3UIBoqlEHG8DwfQcGpkkEM5NDPxTzP4kv2R7nh6HelAMjGU6OkHM3RLKaX3PnMicyFqHseXrrpbJ1kFOENoqRD9vuGiwKo96R31N3gFOIi4ue" src="https://github.com/user-attachments/assets/df559a58-2b6f-4a26-aba4-be5df71cc112" />
+
 
 ---
 
@@ -129,78 +110,10 @@ El **Cálculo PI** es un modelo teórico de programación donde tenemos **proces
 | **Mayor escalabilidad** | Fácil agregar más procesos |
 | **Sin memoria compartida** | Cada proceso tiene sus propios datos |
 
-#### Flujo Paso a Paso
+#### Diagrama
 
-```
-1. INICIO
-   └─ Sistema imprime: "Sistema Cálculo PI iniciado"
+<img width="1520" height="1612" alt="hLVDJXin4BxxAKPx0hMaoMuhqKHLeO5Ag2r4GBbK29bT9vXkxCZhvC2jS6ZVe6SUe8Ug5swLcdiUWYVfsFkJtMGJaW2NOCzuliypd-tPhKXJfVlTa6YkGmOxd7OKxL886BmF-vUo3YsgQC0xyLnBIMlt-V2FWERmDlJxeOJM7Y4s4gdl2UvpYRuXH3pIh4iRH4ZDGF7EXIP7yHpmRa_nBg" src="https://github.com/user-attachments/assets/c28e3968-12ef-4eae-8e0b-30abaedd95be" />
 
-2. CREACIÓN DE PROCESOS Y CANALES
-   ├─ Crear 1 proceso coordinador
-   ├─ Crear 3 procesos trabajadores
-   └─ Crear 4 canales privados:
-      ├─ canal_datos (para distribuir datos)
-      ├─ canal_parametros (para enviar parámetros)
-      ├─ canal_gradientes (para recibir resultados)
-      └─ canal_control (para señales)
-
-3. INICIALIZACIÓN
-   ├─ Coordinador crea parámetros iniciales: θ = [0.5, 0.3]
-   ├─ Coordinador envía datos por canal_datos
-   ├─ Los trabajadores reciben EN ESPERA del canal_datos:
-   │  ├─ Trabajador 1 recibe partición 1
-   │  ├─ Trabajador 2 recibe partición 2
-   │  └─ Trabajador 3 recibe partición 3
-   └─ El programa reporta lo que pasa
-
-4. DISTRIBUCIÓN DE PARÁMETROS INICIALES
-   ├─ Coordinador envía θ por canal_parametros
-   ├─ Cada trabajador recibe EN ESPERA:
-   │  ├─ Trabajador 1: "θ recibido"
-   │  ├─ Trabajador 2: "θ recibido"
-   │  └─ Trabajador 3: "θ recibido"
-   └─ Los trabajadores están listos para trabajar
-
-5. CICLO PRINCIPAL (se repite varias veces)
-
-   FASE A - CÁLCULO EN PARALELO:
-   (Los 3 trabajadores calculan al mismo tiempo)
-
-   Trabajador 1:                     Trabajador 2:                     Trabajador 3:
-   - Calcular ∇f₁ = [0.2, 0.1]  |   - Calcular ∇f₂ = [0.15, 0.12] |   - Calcular ∇f₃ = [0.25, 0.08]
-   - Envía por canal_gradientes  |   - Envía por canal_gradientes  |   - Envía por canal_gradientes
-   - Espera nuevo mensaje        |   - Espera nuevo mensaje        |   - Espera nuevo mensaje
-
-   FASE B - AGREGACIÓN EN COORDINADOR:
-   ├─ Coordinador espera 3 gradientes en canal_gradientes
-   ├─ Recibe ∇f₁ de Trabajador 1
-   ├─ Recibe ∇f₂ de Trabajador 2
-   ├─ Recibe ∇f₃ de Trabajador 3
-   └─ Imprime: "Los 3 gradientes recibidos"
-
-   FASE C - ACTUALIZACIÓN EN COORDINADOR:
-   ├─ Calcular promedio: ∇f_prom = (∇f₁+∇f₂+∇f₃)/3 = [0.20, 0.10]
-   ├─ Actualizar: θ_nuevo = θ - α × ∇f_prom = [0.48, 0.29]
-   ├─ Verificar convergencia: ¿||θ_nuevo - θ|| < ε?
-   └─ Imprime: "Parámetros actualizados"
-
-6. DECISIÓN DE CONVERGENCIA
-
-   ├─ Si SÍ convergió:
-   │  ├─ Enviar STOP por canal_control a todos
-   │  ├─ Todos los trabajadores reciben STOP y finalizan
-   │  ├─ Coordinador muestra parámetros finales
-   │  └─ Imprime: "Convergencia alcanzada"
-   │
-   └─ Si NO convergió:
-      ├─ Enviar CONTINUAR por canal_control
-      ├─ Enviar θ_nuevo por canal_parametros
-      ├─ Los trabajadores despiertan y calculan de nuevo
-      └─ Vuelven a FASE A (Cálculo en paralelo)
-
-7. FIN
-   └─ Cuando converge: "Sistema finalizado exitosamente"
-```
 
 #### Ventajas
 
