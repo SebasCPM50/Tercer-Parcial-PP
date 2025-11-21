@@ -32,41 +32,6 @@ La **programación concurrente** es un estilo donde el programa principal crea v
 | **Informes constantes** | El programa imprime qué está haciendo cada tarea |
 | **Orden finalmente secuencial** | Los resultados se combinan en orden al final |
 
-#### Flujo Paso a Paso
-
-```
-1. INICIO
-   └─ El programa imprime: "Sistema iniciado"
-
-2. CREACIÓN
-   └─ Se crean 3 tareas
-   └─ El programa imprime: "Creando tareas..."
-   └─ Inicializar contador en 0
-
-3. EJECUCIÓN PARALELA (Las 3 tareas avanzan simultáneamente)
-
-   Tarea 1:                          Tarea 2:                          Tarea 3:
-   - Procesar datos A    |           - Procesar datos B    |           - Procesar datos C
-   - Calcular            |           - Calcular            |           - Calcular
-   - Reportar progreso   |           - Reportar progreso   |           - Reportar progreso
-   - Incrementar contador|           - Incrementar contador|           - Incrementar contador
-
-4. SINCRONIZACIÓN
-   └─ Esperar a que contador llegue a 3
-   └─ El programa verifica: ¿contador == 3?
-
-5. COMBINACIÓN
-   ├─ Si SÍ: Combinar resultados de las 3 tareas
-   │         Mostrar resultado final
-   │         Liberar recursos
-   │         Imprime: "Sistema finalizado"
-   │
-   └─ Si NO: Manejar error
-            Imprime: "ERROR: Tareas incompletas"
-
-6. FIN
-```
-
 #### Ventajas
 
  **Simple de entender**: Es como tareas trabajando en paralelo  
@@ -82,7 +47,6 @@ La **programación concurrente** es un estilo donde el programa principal crea v
 #### Diagrama
 
 <img width="1217" height="1219" alt="hPR1ZjCm48RlVefH9QJkfLeISKcqOg5qfKeihDez824ENcVQTN7iOZiNteO7uCG38D4NO-maRTe2IhlqL7iyCx-_iMPoxJotlYeLyz8hX3UIBoqlEHG8DwfQcGpkkEM5NDPxTzP4kv2R7nh6HelAMjGU6OkHM3RLKaX3PnMicyFqHseXrrpbJ1kFOENoqRD9vuGiwKo96R31N3gFOIi4ue" src="https://github.com/user-attachments/assets/df559a58-2b6f-4a26-aba4-be5df71cc112" />
-
 
 ---
 
@@ -128,60 +92,7 @@ El **Cálculo PI** es un modelo teórico de programación donde tenemos **proces
  **Overhead de canales**: Más lento que compartir memoria directamente  
  **Mayor complejidad**: Hay que diseñar bien los canales  
 
-#### Ejemplo de Salida en Consola
-
-```
-Sistema Cálculo PI iniciado
-Canales creados:
-- canal_datos
-- canal_gradientes
-- canal_parametros
-- canal_control
-Coordinador: Parámetros iniciales θ = [0.5, 0.3]
-Coordinador: Enviando particiones a los 3 trabajadores
-Trabajador 1: Datos recibidos
-Trabajador 2: Datos recibidos
-Trabajador 3: Datos recibidos
-Coordinador: Enviando parámetros iniciales
-Trabajador 1: θ recibido = [0.5, 0.3]
-Trabajador 2: θ recibido = [0.5, 0.3]
-Trabajador 3: θ recibido = [0.5, 0.3]
-
---- ITERACIÓN 1 ---
-Trabajador 1: Calculando ∇f₁ = [0.2, 0.1]
-Trabajador 2: Calculando ∇f₂ = [0.15, 0.12]
-Trabajador 3: Calculando ∇f₃ = [0.25, 0.08]
-Trabajador 1: Gradiente enviado
-Trabajador 2: Gradiente enviado
-Trabajador 3: Gradiente enviado
-Coordinador: Esperando 3 gradientes...
-Coordinador: Recibido ∇f₁ de Trabajador 1
-Coordinador: Recibido ∇f₂ de Trabajador 2
-Coordinador: Recibido ∇f₃ de Trabajador 3
-Coordinador: ∇f_prom = [0.20, 0.10]
-Coordinador: Actualizando θ
-Coordinador: θ_nuevo = [0.48, 0.29]
-Coordinador: Verificar convergencia
-Coordinador: Enviando CONTINUAR a Trabajadores
-Coordinador: Broadcast de nuevos parámetros
-
---- ITERACIÓN 2 ---
-[Repite el proceso...]
-
---- CONVERGENCIA ALCANZADA ---
-Coordinador: Convergencia alcanzada
-Coordinador: Enviando STOP a Trabajadores
-Trabajador 1: Finalizando...
-Trabajador 2: Finalizando...
-Trabajador 3: Finalizando...
-Parámetros finales: θ = [0.48, 0.29]
-Iteraciones completadas: 5
-Sistema finalizado exitosamente
-```
-
 ---
-
-###  Comparación Lado a Lado
 
 #### Concurrencia vs Cálculo PI
 
@@ -195,53 +106,6 @@ Sistema finalizado exitosamente
 | **Seguridad** | Riesgo de conflictos | Muy segura |
 | **Performance** | Más rápida (sin overhead) | Puede ser más lenta (overhead de canales) |
 | **Uso ideal** | Tareas con datos compartidos | Sistemas distribuidos |
-
----
-
-##  Analogías para Entender Mejor
-
-### Programación Concurrente = Equipo en una Oficina
-
-```
-┌─────────────────────────────────────┐
-│     OFICINA (Memoria Compartida)    │
-│                                      │
-│  Persona 1      Persona 2   Persona 3│
-│   [Working]      [Working]   [Working]│
-│     en A           en B         en C │
-│                                      │
-│  Jefe: "¿Dónde van?"                │
-│  Jefe: "Persona 1 42% hecha"        │
-│  Jefe: "Persona 2 completada"       │
-│  Jefe: "Esperando Persona 3..."     │
-└─────────────────────────────────────┘
-
-Todos usan el mismo espacio y herramientas.
-El jefe constantemente chequea qué hace cada uno.
-```
-
-#### Cálculo PI = Centro de Llamadas
-
-```
-┌────────────┐         Canales         ┌────────────┐
-│Coordinador ├────────────────────────>│Trabajador 1│
-│            │ "Aquí están tus datos"  │            │
-│            │                         │ "Listo"    │
-│            |<────────────────────────┤            │
-│            │ "Calcula el gradiente"  │            │
-│            ├────────────────────────>│            │
-│            │                         │ Calculando │
-│            │ "Envía el resultado"    │            │
-│            │                         │ ∇f₁ enviado│
-│            │<────────────────────────┤            │
-└────────────┘                         └────────────┘
-
-  Similar con Trabajador 2 y 3 por canales separados.
-
-Cada uno tiene su teléfono (canal).
-Solo se comunican por teléfono.
-El coordinador no ve qué hacen, solo recibe mensajes.
-```
 
 ---
 
@@ -280,22 +144,6 @@ El coordinador no ve qué hacen, solo recibe mensajes.
 4. **Las notas**: Qué se imprime en consola (para debugging)
 5. **Después del fork**: El coordinador recolecta todos los mensajes
 6. **El `if`**: Decisión: ¿Convergió? Sí → STOP. No → CONTINUAR
-
----
-
-### Próximos Pasos
-
-Para implementar estos diseños, necesitarías:
-
-#### Programación Concurrente:
-- Usar `threads` en Java, Python (`threading`), C++ (`pthread`)
-- Usar `locks` o `mutex` para sincronización
-- Usar contadores o `barriers` para esperar tareas
-
-#### Cálculo PI:
-- Usar un lenguaje que soporte paso de mensajes:
-  - Erlang, Go, Akka, MPI (para paralelo)
-  - O implementar con sockets/HTTP para sistemas distribuidos
 
 ---
 
