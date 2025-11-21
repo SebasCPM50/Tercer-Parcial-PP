@@ -32,17 +32,7 @@ La **programación concurrente** es un estilo donde el programa principal crea v
 | **Informes constantes** | El programa imprime qué está haciendo cada tarea |
 | **Orden finalmente secuencial** | Los resultados se combinan en orden al final |
 
-#### Ventajas
-
- **Simple de entender**: Es como tareas trabajando en paralelo  
- **Buena para datos compartidos**: Las tareas pueden acceder a los mismos datos  
- **Fácil de depurar**: Se puede ver el progreso de cada tarea  
-
-#### Desventajas
-
-**Limitado en escalabilidad**: Compartir mucha memoria es problemático con muchas tareas  
- **Problemas de sincronización**: Riesgo de que dos tareas modifiquen los mismos datos  
- **Difícil de predecir**: El orden de ejecución puede variar  
+---
 
 #### Diagrama
 
@@ -78,20 +68,6 @@ El **Cálculo PI** es un modelo teórico de programación donde tenemos **proces
 
 <img width="1520" height="1612" alt="hLVDJXin4BxxAKPx0hMaoMuhqKHLeO5Ag2r4GBbK29bT9vXkxCZhvC2jS6ZVe6SUe8Ug5swLcdiUWYVfsFkJtMGJaW2NOCzuliypd-tPhKXJfVlTa6YkGmOxd7OKxL886BmF-vUo3YsgQC0xyLnBIMlt-V2FWERmDlJxeOJM7Y4s4gdl2UvpYRuXH3pIh4iRH4ZDGF7EXIP7yHpmRa_nBg" src="https://github.com/user-attachments/assets/c28e3968-12ef-4eae-8e0b-30abaedd95be" />
 
-
-#### Ventajas
-
- **Altamente escalable**: Puedes agregar más procesos sin problemas  
- **Sin conflictos de memoria**: Cada proceso tiene sus propios datos  
- **Fácil de razonar**: La comunicación es explícita y clara  
- **Seguro**: Un proceso no puede interferir con otro  
-
-#### Desventajas
-
- **Más abstracto**: Es más difícil de entender que la concurrencia simple  
- **Overhead de canales**: Más lento que compartir memoria directamente  
- **Mayor complejidad**: Hay que diseñar bien los canales  
-
 ---
 
 #### Concurrencia vs Cálculo PI
@@ -123,27 +99,6 @@ El **Cálculo PI** es un modelo teórico de programación donde tenemos **proces
 - Trabajas en sistemas distribuidos (múltiples máquinas)
 - Quieres evitar problemas de sincronización compleja
 - Necesitas garantías de seguridad (un proceso no afecta a otro)
-
----
-
-### Cómo Leer los Diagramas
-
-#### Para el diagrama Concurrente:
-
-1. **Sigue la línea de arriba a abajo**
-2. **Cuando veas `fork`**: Las tareas ahora van en paralelo (lee los 3 brazos simultáneamente)
-3. **Lee las notas**: Esas son las cosas que el programa imprime
-4. **Cuando regresa a una línea**: Los procesos se sincronizaron (se esperaron mutuamente)
-5. **El `if`**: Es la decisión: ¿Todas completaron? Sí o No
-
-#### Para el diagrama Cálculo PI:
-
-1. **Sigue de arriba a abajo como antes**
-2. **Cuando veas `fork`**: Los procesos avanzan en paralelo
-3. **Las acciones de cada proceso**: Esperar, Calcular, Enviar (por sus canales)
-4. **Las notas**: Qué se imprime en consola (para debugging)
-5. **Después del fork**: El coordinador recolecta todos los mensajes
-6. **El `if`**: Decisión: ¿Convergió? Sí → STOP. No → CONTINUAR
 
 ---
 
