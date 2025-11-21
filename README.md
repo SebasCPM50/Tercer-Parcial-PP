@@ -386,34 +386,6 @@ Para implementar estos diseños, necesitarías:
 
 ---
 
-### Recursos para Aprender Más
-
-#### Programación Concurrente:
-- "The Art of Multiprocessor Programming" - Herlihy & Shavit
-- Documentación oficial de threading en tu lenguaje
-
-#### Cálculo PI:
-- "Communicating Sequential Processes" - Tony Hoare (CSP)
-- Documentación de Erlang o Go para ejemplos prácticos
-
----
-
-## 📄 Estructura del Repositorio
-
-```
-.
-├── README.md                          (este archivo)
-├── diagrama_concurrente_CORREGIDO.puml (Diagrama 1)
-├── diagrama_pi_CORREGIDO.puml         (Diagrama 2)
-├── ejemplos/
-│   ├── concurrencia_python.py         (Ejemplo en Python)
-│   ├── calculus_pi_go.go              (Ejemplo en Go)
-│   └── README_ejemplos.md
-└── recursos/
-    ├── refencias_teoricas.md
-    └── enlaces_utiles.md
-```
-
----
+## Punto #2
 
 
