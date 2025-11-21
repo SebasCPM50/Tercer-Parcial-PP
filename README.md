@@ -1,3 +1,7 @@
+### Parcial Paradigmas
+
+# Punto #1
+
 # Diagramas de Flujo: Paradigmas de Programación Concurrente y Cálculo PI
 
 ## Introducción
@@ -6,7 +10,7 @@ Este repositorio contiene dos diagramas de flujo que comparan dos paradigmas de 
 
 ---
 
-## 📌 ¿Por qué estos dos paradigmas?
+## ¿Por qué estos dos paradigmas?
 
 Cuando quieres que múltiples tareas se ejecuten "al mismo tiempo", tienes al menos dos formas principales de hacerlo:
 
