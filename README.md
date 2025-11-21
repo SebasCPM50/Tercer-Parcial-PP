@@ -1,27 +1,18 @@
-### Parcial Paradigmas
+# Parcial #3 Paradigmas
 
-# Punto #1
+## Punto #1
 
-# Diagramas de Flujo: Paradigmas de Programación Concurrente y Cálculo PI
+## Diagramas de Flujo: Paradigmas de Programación Concurrente y Cálculo PI
 
-## Introducción
+### Introducción
 
 Este repositorio contiene dos diagramas de flujo que comparan dos paradigmas de programación distintos para resolver el problema de **Regresión Lineal Distribuida**. Los diagramas muestran cómo cada paradigma aborda la ejecución paralela de tareas y la comunicación entre procesos.
 
 ---
 
-## ¿Por qué estos dos paradigmas?
+### Diagrama 1: Paradigma de Programación Concurrente
 
-Cuando quieres que múltiples tareas se ejecuten "al mismo tiempo", tienes al menos dos formas principales de hacerlo:
-
-1. **Programación Concurrente**: Varias tareas comparten recursos (memoria, datos) y el programa informa qué está pasando en cada momento.
-2. **Cálculo PI**: Varios procesos completamente independientes que solo se comunican a través de "canales" especiales (como si fueran teléfonos dedicados).
-
----
-
-## 📊 Diagrama 1: Paradigma de Programación Concurrente
-
-### ¿Qué es?
+#### ¿Qué es?
 
 La **programación concurrente** es un estilo donde el programa principal crea varias tareas que se ejecutan "casi al mismo tiempo". Cada tarea puede acceder a datos compartidos y el programa va informando sobre el progreso de cada una.
 
@@ -31,7 +22,7 @@ La **programación concurrente** es un estilo donde el programa principal crea v
 - El gerente constantemente chequea qué está haciendo cada grupo
 - Cuando todos terminan, el gerente combina los resultados
 
-### Características Principales
+#### Características Principales
 
 | Característica | Explicación |
 |---|---|
@@ -41,7 +32,7 @@ La **programación concurrente** es un estilo donde el programa principal crea v
 | **Informes constantes** | El programa imprime qué está haciendo cada tarea |
 | **Orden finalmente secuencial** | Los resultados se combinan en orden al final |
 
-### Flujo Paso a Paso
+#### Flujo Paso a Paso
 
 ```
 1. INICIO
@@ -76,19 +67,19 @@ La **programación concurrente** es un estilo donde el programa principal crea v
 6. FIN
 ```
 
-### Ventajas
+#### Ventajas
 
-✅ **Simple de entender**: Es como tareas trabajando en paralelo  
-✅ **Buena para datos compartidos**: Las tareas pueden acceder a los mismos datos  
-✅ **Fácil de depurar**: Se puede ver el progreso de cada tarea  
+ **Simple de entender**: Es como tareas trabajando en paralelo  
+ **Buena para datos compartidos**: Las tareas pueden acceder a los mismos datos  
+ **Fácil de depurar**: Se puede ver el progreso de cada tarea  
 
-### Desventajas
+#### Desventajas
 
-❌ **Limitado en escalabilidad**: Compartir mucha memoria es problemático con muchas tareas  
-❌ **Problemas de sincronización**: Riesgo de que dos tareas modifiquen los mismos datos  
-❌ **Difícil de predecir**: El orden de ejecución puede variar  
+**Limitado en escalabilidad**: Compartir mucha memoria es problemático con muchas tareas  
+ **Problemas de sincronización**: Riesgo de que dos tareas modifiquen los mismos datos  
+ **Difícil de predecir**: El orden de ejecución puede variar  
 
-### Ejemplo de Salida en Consola
+#### Ejemplo de Salida en Consola
 
 ```
 Sistema iniciado
@@ -114,9 +105,9 @@ Sistema finalizado exitosamente
 
 ---
 
-## 📊 Diagrama 2: Paradigma de Programación Cálculo PI
+### Diagrama 2: Paradigma de Programación Cálculo PI
 
-### ¿Qué es?
+#### ¿Qué es?
 
 El **Cálculo PI** es un modelo teórico de programación donde tenemos **procesos completamente independientes** que se comunican exclusivamente a través de **canales**. Los procesos no comparten memoria, solo intercambian mensajes.
 
@@ -127,7 +118,7 @@ El **Cálculo PI** es un modelo teórico de programación donde tenemos **proces
 - Los agentes solo hacen caso cuando reciben una llamada
 - Al terminar, reportan por su teléfono
 
-### Características Principales
+#### Características Principales
 
 | Característica | Explicación |
 |---|---|
@@ -138,7 +129,7 @@ El **Cálculo PI** es un modelo teórico de programación donde tenemos **proces
 | **Mayor escalabilidad** | Fácil agregar más procesos |
 | **Sin memoria compartida** | Cada proceso tiene sus propios datos |
 
-### Flujo Paso a Paso
+#### Flujo Paso a Paso
 
 ```
 1. INICIO
@@ -211,20 +202,20 @@ El **Cálculo PI** es un modelo teórico de programación donde tenemos **proces
    └─ Cuando converge: "Sistema finalizado exitosamente"
 ```
 
-### Ventajas
+#### Ventajas
 
-✅ **Altamente escalable**: Puedes agregar más procesos sin problemas  
-✅ **Sin conflictos de memoria**: Cada proceso tiene sus propios datos  
-✅ **Fácil de razonar**: La comunicación es explícita y clara  
-✅ **Seguro**: Un proceso no puede interferir con otro  
+ **Altamente escalable**: Puedes agregar más procesos sin problemas  
+ **Sin conflictos de memoria**: Cada proceso tiene sus propios datos  
+ **Fácil de razonar**: La comunicación es explícita y clara  
+ **Seguro**: Un proceso no puede interferir con otro  
 
-### Desventajas
+#### Desventajas
 
-❌ **Más abstracto**: Es más difícil de entender que la concurrencia simple  
-❌ **Overhead de canales**: Más lento que compartir memoria directamente  
-❌ **Mayor complejidad**: Hay que diseñar bien los canales  
+ **Más abstracto**: Es más difícil de entender que la concurrencia simple  
+ **Overhead de canales**: Más lento que compartir memoria directamente  
+ **Mayor complejidad**: Hay que diseñar bien los canales  
 
-### Ejemplo de Salida en Consola
+#### Ejemplo de Salida en Consola
 
 ```
 Sistema Cálculo PI iniciado
@@ -277,9 +268,9 @@ Sistema finalizado exitosamente
 
 ---
 
-## 🔄 Comparación Lado a Lado
+###  Comparación Lado a Lado
 
-### Concurrencia vs Cálculo PI
+#### Concurrencia vs Cálculo PI
 
 | Aspecto | Concurrencia | Cálculo PI |
 |--------|-------------|-----------|
@@ -294,7 +285,7 @@ Sistema finalizado exitosamente
 
 ---
 
-## 💡 Analogías para Entender Mejor
+##  Analogías para Entender Mejor
 
 ### Programación Concurrente = Equipo en una Oficina
 
@@ -316,7 +307,7 @@ Todos usan el mismo espacio y herramientas.
 El jefe constantemente chequea qué hace cada uno.
 ```
 
-### Cálculo PI = Centro de Llamadas
+#### Cálculo PI = Centro de Llamadas
 
 ```
 ┌────────────┐         Canales         ┌────────────┐
@@ -341,15 +332,15 @@ El coordinador no ve qué hacen, solo recibe mensajes.
 
 ---
 
-## 🎯 Casos de Uso
+### Casos de Uso
 
-### Usa Concurrencia cuando:
+#### Usa Concurrencia cuando:
 - Las tareas necesitan compartir muchos datos
 - El problema es relativamente simple
 - Ejecutas en una sola máquina
 - El rendimiento es crítico (sin overhead de canales)
 
-### Usa Cálculo PI cuando:
+#### Usa Cálculo PI cuando:
 - Quieres máxima modularidad y escalabilidad
 - Tienes muchos procesos independientes
 - Trabajas en sistemas distribuidos (múltiples máquinas)
@@ -358,9 +349,9 @@ El coordinador no ve qué hacen, solo recibe mensajes.
 
 ---
 
-## 📝 Cómo Leer los Diagramas
+### Cómo Leer los Diagramas
 
-### Para el diagrama Concurrente:
+#### Para el diagrama Concurrente:
 
 1. **Sigue la línea de arriba a abajo**
 2. **Cuando veas `fork`**: Las tareas ahora van en paralelo (lee los 3 brazos simultáneamente)
@@ -368,7 +359,7 @@ El coordinador no ve qué hacen, solo recibe mensajes.
 4. **Cuando regresa a una línea**: Los procesos se sincronizaron (se esperaron mutuamente)
 5. **El `if`**: Es la decisión: ¿Todas completaron? Sí o No
 
-### Para el diagrama Cálculo PI:
+#### Para el diagrama Cálculo PI:
 
 1. **Sigue de arriba a abajo como antes**
 2. **Cuando veas `fork`**: Los procesos avanzan en paralelo
@@ -379,47 +370,31 @@ El coordinador no ve qué hacen, solo recibe mensajes.
 
 ---
 
-## 🚀 Próximos Pasos
+### Próximos Pasos
 
 Para implementar estos diseños, necesitarías:
 
-### Programación Concurrente:
+#### Programación Concurrente:
 - Usar `threads` en Java, Python (`threading`), C++ (`pthread`)
 - Usar `locks` o `mutex` para sincronización
 - Usar contadores o `barriers` para esperar tareas
 
-### Cálculo PI:
+#### Cálculo PI:
 - Usar un lenguaje que soporte paso de mensajes:
   - Erlang, Go, Akka, MPI (para paralelo)
   - O implementar con sockets/HTTP para sistemas distribuidos
 
 ---
 
-## 📚 Recursos para Aprender Más
+### Recursos para Aprender Más
 
-### Programación Concurrente:
+#### Programación Concurrente:
 - "The Art of Multiprocessor Programming" - Herlihy & Shavit
 - Documentación oficial de threading en tu lenguaje
 
-### Cálculo PI:
+#### Cálculo PI:
 - "Communicating Sequential Processes" - Tony Hoare (CSP)
 - Documentación de Erlang o Go para ejemplos prácticos
-
----
-
-## ❓ Preguntas Frecuentes
-
-**P: ¿Cuál es más rápido?**  
-R: Concurrencia es generalmente más rápida (menos overhead), pero Cálculo PI es más escalable.
-
-**P: ¿Puedo usar ambos juntos?**  
-R: Sí, muchos sistemas usan concurrencia dentro de procesos y Cálculo PI entre procesos.
-
-**P: ¿Es Cálculo PI solo teoría?**  
-R: No, lenguajes como Erlang y Go lo implementan en la práctica.
-
-**P: ¿Por qué se llama "Cálculo PI"?**  
-R: Porque el símbolo π se usa para representar procesos (del griego "proceso").
 
 ---
 
@@ -441,18 +416,4 @@ R: Porque el símbolo π se usa para representar procesos (del griego "proceso")
 
 ---
 
-## 👤 Autor
 
-Documento de referencia para estudiantes de paradigmas de programación.
-
-## 📄 Licencia
-
-Libre para usar con propósitos educativos.
-
----
-
-## 📞 Dudas o Sugerencias
-
-Si hay algo que no entiendes o quieres más detalle sobre algún aspecto, consulta las secciones correspondientes de este README.
-
-**Recuerda:** La programación concurrente es complicada. Tómate tu tiempo para entenderla bien.
