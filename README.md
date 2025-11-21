@@ -223,7 +223,7 @@ Esto resulta en:
 
 ---
 
-## Punto 3
+## Punto #3
 
 ## Comparacion de Desempeno: Python vs Rust
 ### Regresion Lineal Simple con Descenso de Gradiente
